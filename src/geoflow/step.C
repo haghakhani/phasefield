@@ -235,7 +235,9 @@ void step(HashTable* El_Table, HashTable* NodeTable, int myid, int nump,
 
 	      double *coord=Curr_El->get_coord();	      
 	      //update the record of maximum pileheight in the area covered by this element
-	      double hheight=*(Curr_El->get_state_vars()+1);
+	      double hheight;
+	      if(*(Curr_El->get_state_vars())>=0)   hheight=*(Curr_El->get_state_vars()+1);
+	      else hheight=0;
 	      if(hheight>0 && hheight<0);
 
 

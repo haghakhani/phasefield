@@ -33,7 +33,7 @@ c     vel is used to determine if velocity gradients are converging or diverging
 c     COEFFICIENTS
       cosphi=dcos(intfrictang)
       tandel=dtan(bedfrictang)
-      if(uvec(1) .gt.0) then     !tiny
+      if(uvec(1) .gt. 0.d0) then     !tiny
 c         tttest = sgn(vel, tiny)
          vel=(dUdx(3)/uvec(2) - uvec(3)*dudx(2)/uvec(2)**2+
      1        dUdy(4)/uvec(2) - uvec(4)*dudy(2)/uvec(2)**2)

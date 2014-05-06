@@ -1880,7 +1880,7 @@ void Element::xdirflux(MatProps* matprops_ptr, double dz, double wetnessfactor,
     
       Vel[1] = Vel[3] = 0.; // not really, but don't need it here
 
-      if (hfv[0][1]>0)
+      if (hfv[0][1]>GEOFLOW_TINY)
 	// Solid-phase velocity in x-dir
 	Vel[0] = hfv[0][2]/hfv[0][1];
       else
@@ -1971,8 +1971,8 @@ void Element::ydirflux(MatProps* matprops_ptr, double dz, double wetnessfactor,
       // 	for (i=0; i<NUM_STATE_VARS; i++)
       // 	  hfv[0][i]*=wetnessfactor;
     
-      if ( hfv[0][0] > GEOFLOW_TINY )
-	volf = 0;//hfv[0][1]/hfv[0][0];
+      //if ( hfv[0][0] > GEOFLOW_TINY )
+	//volf = 0;//hfv[0][1]/hfv[0][0];
 
       // a = speed of sound through the medium
       //double temp=kactxy[1]*hfv[0][1]*gravity[2];
@@ -1982,7 +1982,7 @@ void Element::ydirflux(MatProps* matprops_ptr, double dz, double wetnessfactor,
       // velocities
       Vel[0]= Vel[2] = 0. ; // don't need them here
 
-      if (hfv[0][1]>0)
+      if (hfv[0][1]>GEOFLOW_TINY)
 	// Solid-phase velocity in y-dir
 	Vel[1]=hfv[0][3]/hfv[0][1];
       else

@@ -84,8 +84,8 @@ extern void fhsfc2d_(double*, unsigned*, unsigned*);
 
 /* geoflow data */
 const int NUM_STATE_VARS = 6;
-const double GEOFLOW_TINY=0;//.0005;
-const double GEOFLOW_SHORT=0;//.0005;
+const double GEOFLOW_TINY=0.00005;//.0005;
+const double GEOFLOW_SHORT=0.0005;//.0005;
 
 /* two-phase stuff */
 const int TWOPHASE = 0;

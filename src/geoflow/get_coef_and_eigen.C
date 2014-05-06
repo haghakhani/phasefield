@@ -98,7 +98,7 @@ double get_coef_and_eigen(HashTable* El_Table, HashTable* NodeTable,
 			{
 				//if this element does not belong on this processor don't involve!!!
 
-				if(*(EmTemp->get_state_vars()) >0/*> GEOFLOW_TINY*/) 
+				if(*(EmTemp->get_state_vars()+1) > GEOFLOW_TINY) 
 				{
 					ifanynonzeroheight=1;
 
@@ -129,11 +129,14 @@ double get_coef_and_eigen(HashTable* El_Table, HashTable* NodeTable,
 					//must use hVx/h and hVy/h rather than eval_velocity (L'Hopital's 
 					//rule speed if it is smaller) because underestimating speed (which 
 					//results in over estimating the timestep) is fatal to stability...
+					//if (*(EmTemp->get_state_vars()+1)>.0001){
 
 					Vsolid[0]=(*(EmTemp->get_state_vars()+2))/(*(EmTemp->get_state_vars()+1));
 					Vsolid[1]=(*(EmTemp->get_state_vars()+3))/(*(EmTemp->get_state_vars()+1));
 					Vfluid[0]=0;//(*(EmTemp->get_state_vars()+4))/(*(EmTemp->get_state_vars()+1));
 					Vfluid[1]=0;//(*(EmTemp->get_state_vars()+4))/(*(EmTemp->get_state_vars()+1));
+					//}else
+					  // Vsolid[0]=Vsolid[1]=Vfluid[0]=Vfluid[1]=0;
 
 //printf("the value of height=%f .................phi=%f\n", *(EmTemp->get_state_vars()+1),*(EmTemp->get_state_vars()));
 					//printf("there should be some other problem ....vsolid_x=%f....vsolid_y=%f.........vfluid_x=%f.....vfluid_y=%f \n",Vsolid[0],Vsolid[1],Vfluid[0],Vfluid[1]);					
@@ -164,13 +167,15 @@ printf("the evalue is NaN: pile height= %f      phi=%f   \n",*(EmTemp->get_state
 						fprintf(stderr,"eigenvalue is %e for procd %d momentums are:\n \
 								solid :(%e, %e) \n \
 								fluid :(%e, %e) \n \
-								for pile height %e curvature=%e (x,y)=(%e,%e)\n",
+								for pile height %e phi %e  curvature=%e (x,y)=(%e,%e)\n \
+								with gravity=%f    k_xy=%f \n",								
 								evalue, myid, *(EmTemp->get_state_vars()+2),
 								*(EmTemp->get_state_vars()+3),
 								*(EmTemp->get_state_vars()+4),
 								*(EmTemp->get_state_vars()+5),
-								*(EmTemp->get_state_vars()),maxcurve,
-								*(EmTemp->get_coord()),*(EmTemp->get_coord()+1));
+								*(EmTemp->get_state_vars()+1), *(EmTemp->get_state_vars()), maxcurve,
+								*(EmTemp->get_coord()),*(EmTemp->get_coord()+1)),
+						  		*(EmTemp->get_gravity()+3), *(EmTemp->get_kactxy());
 						exit(1); 
 					}
 

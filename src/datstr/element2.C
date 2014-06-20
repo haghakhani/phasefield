@@ -3338,7 +3338,7 @@ int Element::if_pile_boundary(HashTable *ElemTable, double contour_height){
   // }
 
   //  assert(state_vars[0]>=0.0);
-  if(state_vars[0]>=dabs(contour_height))
+  if(state_vars[1]>=contour_height)
     {
       for(ineigh=0;ineigh<8;ineigh++)
 	if(neigh_proc[ineigh]>=0) //don't check outside map boundary or duplicate neighbor
@@ -3352,7 +3352,7 @@ int Element::if_pile_boundary(HashTable *ElemTable, double contour_height){
 	      fflush(stdout);
 	    }
 	    assert(ElemNeigh);
-	    if(*(ElemNeigh->get_state_vars())<dabs(contour_height))
+	    if(*(ElemNeigh->get_state_vars()+1)<contour_height)
 	      return(2); //inside of pileheight contour line
 	  }
     }
@@ -3370,7 +3370,7 @@ int Element::if_pile_boundary(HashTable *ElemTable, double contour_height){
 	      fflush(stdout);
 	    }
 	    assert(ElemNeigh);
-	    if(*(ElemNeigh->get_state_vars())>=dabs(contour_height))
+	    if(*(ElemNeigh->get_state_vars()+1)>=contour_height)
 	      return(1); //outside of pileheight contour line
 	  }
     } 
@@ -3477,13 +3477,13 @@ int Element::if_first_buffer_boundary(HashTable *ElemTable, double contour_heigh
 
   //assert(state_vars[0]>=0.0);
   assert(Influx[1]>=0.0);
-  if((state_vars[0]<dabs(contour_height))&&
+  if((state_vars[1]<contour_height)&&
      (Influx[1]==0.0)){
     for(ineigh=0;ineigh<8;ineigh++)
       if(neigh_proc[ineigh]>=0){ //don't check outside map boundary or duplicate neighbor
 	ElemNeigh=(Element*) ElemTable->lookup(neighbor[ineigh]);
 	assert(ElemNeigh);
-	if((*(ElemNeigh->get_state_vars())>=dabs(contour_height))||
+	if((*(ElemNeigh->get_state_vars()+1)>=contour_height)||
 	   (*(ElemNeigh->get_influx()+1)>0.0))
 	  {
 	    iffirstbuffer=1;
@@ -3498,7 +3498,7 @@ int Element::if_first_buffer_boundary(HashTable *ElemTable, double contour_heigh
 	  {
 	    ElemNeigh=(Element*) ElemTable->lookup(neighbor[ineigh]);
 	    assert(ElemNeigh);
-	    if((*(ElemNeigh->get_state_vars())<dabs(contour_height))&&
+	    if((*(ElemNeigh->get_state_vars()+1)<contour_height)&&
 	       (*(ElemNeigh->get_influx()+1)==0.0))
 	      {
 		iffirstbuffer=1;

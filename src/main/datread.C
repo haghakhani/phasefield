@@ -730,6 +730,7 @@ void Read_grid(int myid, int numprocs,
 	     (matprops_ptr->smallest_axis)
 	     )/
 	 log(2.0));
+//  REFINE_LEVEL=0;
 
 
   if(REFINE_LEVEL<0) REFINE_LEVEL=0;

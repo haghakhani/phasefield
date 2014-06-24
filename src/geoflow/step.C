@@ -262,7 +262,7 @@ double timedelta=0;
   // ====================================================Implicit Solver==========================
    if (timeprops_ptr->iter%5==4 ||timeprops_ptr->iter==1 || timeprops_ptr->time>=timeprops_ptr->ndnextoutput  /*|| timeprops_ptr->iter==1 */){//{|| timeprops_ptr->iter == 1){//|| timeprops_ptr->iter % 5 ==2){
   timedelta= (timeprops_ptr->time-timeprops_ptr->implicit);//*timeprops_ptr->TIME_SCALE;  
-  LaplacianData  Laplacian (El_Table, NodeTable , timedelta, .001); 
+  LaplacianData  Laplacian (El_Table, NodeTable , timedelta, .001,timeprops_ptr); 
 
 //cout<<"time data not scaled  "<<timeprops_ptr->time-timeprops_ptr->implicit<<"   scaled time is   "<<timedelta<<"  Time Scale is "<<timeprops_ptr->TIME_SCALE<<endl;
 

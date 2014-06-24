@@ -96,7 +96,7 @@ void calc_edge_states(HashTable* El_Table, HashTable* NodeTable,
 		      int myid, int* order_flag, double *outflow);
 
 //! This function updates phi variable
-void update_phi(HashTable *El_Table, double *update);
+PetscErrorCode update_phi(HashTable *El_Table, Vec update);
 
 //! This function counts the number of elements
 int num_nonzero_elem(HashTable *El_Table);
@@ -105,7 +105,7 @@ int num_nonzero_elem(HashTable *El_Table);
 //! This function computes the Matrix-free Laplacian
 PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y);
 //
-PetscErrorCode MakeRHS(LaplacianData *Laplacian,PetscInt num_elem,Vec b);
+//PetscErrorCode MakeRHS(LaplacianData *Laplacian,PetscInt num_elem,Vec b);
 //
 //
 ////! This function is the implicit solver

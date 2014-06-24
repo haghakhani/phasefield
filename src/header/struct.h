@@ -156,12 +156,14 @@ double   Xnod[18];
 
 struct LaplacianData{
   HashTable *El_Table, *NodeTable;
+  TimeProps* timeprops;
   double delta_t,LapCoef; 
-  LaplacianData(HashTable* X, HashTable* Y, double dT, double Coef){
+  LaplacianData(HashTable* X, HashTable* Y, double dT, double Coef, TimeProps* timeprops_ptr){
     El_Table=X;
     NodeTable=Y;
     delta_t=dT;
     LapCoef=Coef;
+    timeprops= timeprops_ptr;
   }
   ~LaplacianData(){}
 };

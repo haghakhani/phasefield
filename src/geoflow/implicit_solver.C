@@ -25,7 +25,6 @@ struct ContData{
 
   HashTable*  El_Table;
   HashTable*  Node_Table;
-  VecScatter* Scatter;
   PetscInt*   Num_elem_proc;
   PetscInt    Total_elem,rank,size;
   TimeProps*  Timeptr;
@@ -47,10 +46,7 @@ int implicit_solver(LaplacianData *Laplacian)
   PetscErrorCode     ierr;
   PetscInt           xsize,*num_elem_proc,*to,*from,its;
   PetscMPIInt        rank,size;
-  //  PetscScalar        *phin,*xx,sizo;
   KSPConvergedReason reason;
-  VecScatter         vscat;
-  IS                 globalis,tois;
 
   ierr = MPI_Comm_rank(PETSC_COMM_WORLD,&rank);CHKERRQ(ierr);
   ierr = MPI_Comm_size(PETSC_COMM_WORLD,&size);CHKERRQ(ierr);
@@ -69,41 +65,21 @@ int implicit_solver(LaplacianData *Laplacian)
   if (rank==0)
     for (int i=1;i<size;i++)
       MPI_Recv(&num_elem_proc[i], 1, MPI_INT, i, 22, PETSC_COMM_WORLD, MPI_STATUS_IGNORE);
-  //MPI_Bcast(&num_elem_proc[rank], 1, MPI_INT, rank, PETSC_COMM_WORLD);
-  //MPI_Allgather(&num_elem_proc[rank], 1, MPI_INT, &num_elem_proc[rank], 1, MPI_Datatype recv_datatype, MPI_Comm communicator)
+
   MPI_Barrier(PETSC_COMM_WORLD);
   MPI_Bcast(num_elem_proc, size, MPI_INT, 0, PETSC_COMM_WORLD);
   MPI_Barrier(PETSC_COMM_WORLD);
 
 
-  //printf("Number of elements are (hi i am second)...........%d\n", num_nonzero_elem(Laplacian->El_Table));
   int total_elem=0,start_elem=0;
-  //MPI_Allreduce(&num_elem, total_elem, 1, MPI_INT, MPI_SUM, PETSC_COMM_WORLD);
-
-  ierr = PetscMalloc(num_elem_proc[rank]*sizeof(PetscInt),&to); CHKERRQ(ierr);
-  ierr = PetscMalloc(num_elem_proc[rank]*sizeof(PetscInt),&from); CHKERRQ(ierr);
-
-
 
   for (int i=0;i<size;i++) 
     total_elem+=num_elem_proc[i];
 
-  for (int i=0;i<rank;i++)
-    start_elem+=num_elem_proc[i];
-
-  for (int i=0;i<num_elem_proc[rank];i++)
-    from[i]=i;
-
-  for (int i=0;i<num_elem_proc[rank];i++)
-    to[i]=i+start_elem;
-
-  ierr = ISCreateGeneral(PETSC_COMM_WORLD,num_elem_proc[rank],from,PETSC_COPY_VALUES,&tois);CHKERRQ(ierr);
-  ierr = ISCreateGeneral(PETSC_COMM_WORLD,num_elem_proc[rank],to  ,PETSC_COPY_VALUES,&globalis);CHKERRQ(ierr);
 
   // we have to create a map between local and global vector
   myctx.El_Table     = Laplacian->El_Table;
   myctx.Node_Table   = Laplacian->NodeTable;
-  myctx.Scatter      = &vscat;
   myctx.Total_elem   = total_elem;
   myctx.Num_elem_proc= num_elem_proc;
   myctx.rank         = rank;
@@ -120,27 +96,15 @@ int implicit_solver(LaplacianData *Laplacian)
   ierr = VecSetType(b,VECSTANDARD); CHKERRQ(ierr);
   ierr = VecSetSizes(b,num_elem_proc[rank],total_elem);CHKERRQ(ierr);
   ierr = VecSetFromOptions(b);CHKERRQ(ierr);
-  ierr = VecGetSize(b,&xsize);
-  //cout<<"size b is  "<<xsize<<endl;
-
-
 
   /*
      right-hand-side vector.
    */
 
   ierr = MakeRHS(&myctx, b);CHKERRQ(ierr);
-  //ierr = VecView(b,PETSC_VIEWER_STDOUT_SELF);CHKERRQ(ierr);
 
   ierr = VecDuplicate(b,&x);CHKERRQ(ierr);
   ierr = VecCopy(b,x);CHKERRQ(ierr);
-  //ierr = VecView(x,PETSC_VIEWER_STDOUT_SELF);CHKERRQ(ierr);
-  ierr = VecGetSize(x,&xsize);
-  //cout<<"size x is  "<<xsize<<endl;
-
-  ierr = VecCreateSeq(PETSC_COMM_SELF, num_elem_proc[rank] ,&xlocal);CHKERRQ(ierr);
-  ierr = VecScatterCreate(xlocal,tois,x,globalis,&vscat);CHKERRQ(ierr);
-
 
   /* 
      Create and assemble parallel matrix
@@ -186,14 +150,16 @@ int implicit_solver(LaplacianData *Laplacian)
      Check the error
    */
   //ierr = VecNorm(x,NORM_2,&norm);CHKERRQ(ierr);
+  if (rank==0){
 
   ierr = KSPGetIterationNumber(ksp,&its);CHKERRQ(ierr);
   ierr = KSPGetResidualNorm(ksp,&norm);CHKERRQ(ierr);
   ierr = PetscSynchronizedPrintf(PETSC_COMM_WORLD,"Norm of error %G iterations %D\n",norm,its);CHKERRQ(ierr);
-  PetscSynchronizedFlush(PETSC_COMM_WORLD); 
+  //PetscSynchronizedFlush(PETSC_COMM_WORLD); 
   ierr = KSPGetConvergedReason(ksp,&reason);
   ierr = PetscSynchronizedPrintf(PETSC_COMM_WORLD,"kind of divergence is: ...........%D \n", reason);
-  PetscSynchronizedFlush(PETSC_COMM_WORLD);
+  //PetscSynchronizedFlush(PETSC_COMM_WORLD);
+  }
   /*
 
    */
@@ -208,12 +174,7 @@ int implicit_solver(LaplacianData *Laplacian)
   ierr = KSPDestroy(&ksp);CHKERRQ(ierr); //ierr = PetscFree(phin);CHKERRQ(ierr);
   ierr = VecDestroy(&x);CHKERRQ(ierr); //ierr = PCDestroy(&pc);CHKERRQ(ierr);
   ierr = VecDestroy(&b);CHKERRQ(ierr); ierr = MatDestroy(&A);CHKERRQ(ierr);
-  ierr = VecScatterDestroy(&vscat);CHKERRQ(ierr);
-  ierr = ISDestroy(&globalis);CHKERRQ(ierr);
-  ierr = ISDestroy(&tois);CHKERRQ(ierr);
   PetscFree(num_elem_proc);CHKERRQ(ierr);
-  PetscFree(to);CHKERRQ(ierr);
-  PetscFree(from);CHKERRQ(ierr);
 
 
   return 0;
@@ -234,27 +195,8 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y)
   HashEntryPtr      currentPtr;
   Element           *Curr_El; 
   ContData           *myctx;  
-  //VecScatter        *vscat;
-  //Vec               xlocal,ylocal;
-
-  //  PetscFunctionBegin;
 
   ierr = MatShellGetContext(A,(void**) &myctx);CHKERRQ(ierr);
-  ierr = VecGetSize(x,&xsize);
-  // cout<<"size x is before "<<xsize<<endl;
-  ierr = VecGetSize(y,&xsize);
-  // cout<<"size y is  before"<<xsize<<endl;
-
-
-  num_elem_proc= myctx->Num_elem_proc;
-  //rank         = myctx.rank;
-  //vscat=myctx.Scatter;
-
-  //  ierr=VecScatterBegin(vscat,x,xlocal,INSERT_VALUES,SCATTER_REVERSE);CHKERRQ(ierr);
-  //  ierr=VecScatterEnd(vscat,x,xlocal,INSERT_VALUES,SCATTER_REVERSE);CHKERRQ(ierr);
-
-  //ierr= VecCreateSeq(PETSC_COMM_SELF,num_elem_proc[rank],xlocal);CHKERRQ(ierr);
-  //ierr= VecCreateSeq(PETSC_COMM_SELF,num_elem_proc[rank],ylocal);CHKERRQ(ierr);
 
   ierr = VecGetArray(x,&x_ptr);CHKERRQ(ierr);
 
@@ -306,26 +248,12 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y)
 	if(Curr_El->get_adapted_flag()>0){
 	  y_ptr[elem] = *(Curr_El->get_state_vars()) - (myctx->LapCoef) * (myctx->delta_t) * 
 	    (*(Curr_El->get_lap_phi()) + *(Curr_El->get_lap_phi()+1));
-	  //	    if ( *(Curr_El->get_state_vars())>0)
-	  //	    printf("phi=%f, lap_phi_x=%f, lap_phi_y=%f,  y=%f \n ", 
-	  //	   *(Curr_El->get_state_vars()), *(Curr_El->get_lap_phi()),*(Curr_El->get_lap_phi()+1), yy[elem]);
 	  elem++;
 	}
 	currentPtr=currentPtr->next;      	    
       }
     }
   ierr = VecRestoreArray(y,&y_ptr);CHKERRQ(ierr);
-  ierr = VecGetSize(x,&xsize);
-  //cout<<"size x is  after"<<xsize<<endl;
-  ierr = VecGetSize(y,&xsize);
-  //cout<<"size y is after "<<xsize<<endl;
-
-
-
-  //PetscFree(xx);
-  //PetscFree(yy);
-  //PetscFree(indices);
-  //exit(1); 
   PetscFunctionReturn(0);
 }
 //=====================================================================================================================
@@ -371,18 +299,7 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
   Vec            blocal;
   PetscErrorCode ierr;
 
-  //  vscat      = ctx->Scater;
-  num_elem_proc= ctx->Num_elem_proc;
-  rank         = ctx->rank;
-
-  ierr = VecGetSize(b,&xsize);
-  //cout<<"size b in RHS 1:  "<<xsize<<endl;
-
-
-
-  // ierr= VecCreateSeq(PETSC_COMM_SELF,num_elem_proc[rank],blocal);CHKERRQ(ierr);
   ierr = VecGetArray(b,&b_ptr);CHKERRQ(ierr);
-
 
   for(int i=0; i<ctx->El_Table->get_no_of_buckets(); i++)
     if(*(buck+i)){
@@ -391,7 +308,6 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
 	Element* Curr_El=(Element*)(currentPtr->value);
 	if(Curr_El->get_adapted_flag()>0){
 	  b_ptr[elem]=*(Curr_El->get_state_vars());
-	  //ierr= VecSetValue(blocal,elem,*(Curr_El->get_state_vars()), INSERT_VALUES);CHKERRQ(ierr);
 	  elem++;
 	}
 
@@ -399,12 +315,6 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
       }
     }
   ierr = VecRestoreArray(b,&b_ptr);CHKERRQ(ierr);
-  ierr = VecGetSize(b,&xsize);
-  //cout<<"size b in RHS 2:  "<<xsize<<endl;
-
-  //ierr=VecScatterBegin(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);
-  //ierr=VecScatterEnd(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);
-  //ierr=VecDestroy(&blocal);CHKERRQ(ierr);
 
   PetscFunctionReturn(0);
 

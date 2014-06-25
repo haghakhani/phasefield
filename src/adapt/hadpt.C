@@ -45,13 +45,14 @@ extern void test_h_refine(HashTable* HT_Elem_Ptr, int myid, int h_count);
 
 extern void all_check(HashTable* eltab, HashTable* ndtab, int myid, int m, double TARGET);
 
+
+//#define REFINE_THRESHOLD 250000*GEOFLOW_TINY
+//#define REFINE_THRESHOLD 10*GEOFLOW_TINY
+//#define REFINE_THRESHOLD 35*GEOFLOW_TINY
 #define REFINE_THRESHOLD1  5*GEOFLOW_TINY
 #define REFINE_THRESHOLD2 15*GEOFLOW_TINY
 #define REFINE_THRESHOLD  40*GEOFLOW_TINY
 
-//#define REFINE_THRESHOLD1  .2*GEOFLOW_TINY
-//#define REFINE_THRESHOLD2 .05*GEOFLOW_TINY
-//#define REFINE_THRESHOLD  .025*GEOFLOW_TINY
 
 void  H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_count, 
 	      double target, MatProps* matprops_ptr, FluxProps *fluxprops, //doesn't need fluxprops
@@ -144,16 +145,17 @@ void  H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_count,
       EmTemp = (Element*)(entryp->value);
       assert(EmTemp);
       //-- this requirement is used to exclude the new elements
-      if(((EmTemp->get_adapted_flag()>0)&&(EmTemp->get_adapted_flag()<NEWSON))&&
-	
+      if(((EmTemp->get_adapted_flag()>0)&&
+	  (EmTemp->get_adapted_flag()<NEWSON))&&
 	 (EmTemp->get_gen()<REFINE_LEVEL)&&
-
-	 ((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY)>0)||
-          (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)||
-          (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)||
-          (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)>0)||
-	  (EmTemp->if_source_boundary(HT_Elem_Ptr)>0)|| 
-	   (*(EmTemp->get_el_error())>geo_target)))
+	 ((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)||
+	  (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)|| 
+	  (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)|| 
+	  (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)>0)||
+	  (EmTemp->if_source_boundary(HT_Elem_Ptr)>0)||
+	  (*(EmTemp->get_el_error())>geo_target)
+	  )
+	 )
       {
         refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);
 	debug_ref_flag++;
@@ -187,11 +189,11 @@ void  H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_count,
       while(entryp){	
 	EmTemp = (Element*)(entryp->value);
 	assert(EmTemp);
-	if((EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )==1) ||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)==1)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)==1)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)==1)
-){
+	if((EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )==1)||
+   	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)==1)||  
+   	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)==1)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)==1)
+	   ){
 	  refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);
 	  debug_ref_flag++;
 	}
@@ -212,10 +214,10 @@ void  H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_count,
 	EmTemp = (Element*)(entryp->value);
 	assert(EmTemp);
 	if((EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)>0)
-)
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD)>0)
+	   )
 	  EmTemp->put_adapted_flag(BUFFER);
 	entryp=entryp->next;
       }
@@ -335,7 +337,7 @@ void  H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_count,
 
     }
   }
-  //printf("The number of refined elements %f\n", debug_ref_flag );
+  
   return;
 }
 
@@ -565,6 +567,7 @@ void  initial_H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_coun
       }
     }
     
+
     TempList.trashlist();
     for(i=0; i<hash_size; i++) {//-- every process begin to scan their own hashtable	
       entryp = *(HT_Elem_Ptr->getbucketptr() + i);
@@ -626,7 +629,6 @@ void  initial_H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_coun
     refine_neigh_update(HT_Elem_Ptr,HT_Node_Ptr,numprocs,myid,
 			(void*) &RefinedList,timeprops_ptr);
 
-//printf("Number of elements for refinement   %d\n", TempList.get_num_elem());
     //mark the new buffer elements as BUFFER element, 
     for(i=0;i<TempList.get_num_elem();i++) {
       EmTemp=TempList.get(i);
@@ -669,7 +671,7 @@ void  initial_H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_coun
 	    EmTemp = (Element*)(entryp->value);
 	    assert(EmTemp);
 	    if(EmTemp->if_next_buffer_boundary(HT_Elem_Ptr,HT_Node_Ptr,
-					      REFINE_THRESHOLD )==1){
+					       REFINE_THRESHOLD)==1){
 	      
 	      if(EmTemp->get_gen()<REFINE_LEVEL)
 		refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);  
@@ -740,7 +742,7 @@ void  initial_H_adapt(HashTable* HT_Elem_Ptr, HashTable* HT_Node_Ptr, int h_coun
 
   icounter=0;
   int minboundarygen;
-int adapted_flag =0 ,newson=0,refinelevel=0,pile_boundary=0,source_boundary=0;
+
   do{
     /*
     if(myid==0) {
@@ -778,7 +780,7 @@ int adapted_flag =0 ,newson=0,refinelevel=0,pile_boundary=0,source_boundary=0;
     */
 
     //if(myid==0) printf("initial_H_adapt %d\n",1); fflush(stdout)
-    //if(myid==0) printf("initial_H_adapt %d\n",2); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",2); fflush(stdout)
 
     if(timeprops_ptr->iter==0)
       //mark the piles so we can refine their boundaries
@@ -802,18 +804,19 @@ int adapted_flag =0 ,newson=0,refinelevel=0,pile_boundary=0,source_boundary=0;
     MPI_Barrier(MPI_COMM_WORLD);
     */
 
-    //if(myid==0) printf("initial_H_adapt %d\n",3); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",3); fflush(stdout)
 
     //mark the mass flux sources so we can refine their boundaries
     mark_flux_region(HT_Elem_Ptr, HT_Node_Ptr, matprops_ptr, fluxprops_ptr, 
 		     timeprops_ptr);
     
-  //  if(myid==0) printf("initial_H_adapt %d\n",4); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",4); fflush(stdout)
 
 
     move_data(numprocs, myid, HT_Elem_Ptr, HT_Node_Ptr,timeprops_ptr);
 
     /*
+    printf("myid=%d Initial_H_adapt() before first if_pile_boundary()\n",myid);
     if(myid==0) {
       printf("before AssertMeshErrorFree() 3.0\n");
       AssertMeshErrorFree(HT_Elem_Ptr,HT_Node_Ptr,numprocs,myid,0.0);
@@ -828,10 +831,6 @@ int adapted_flag =0 ,newson=0,refinelevel=0,pile_boundary=0,source_boundary=0;
     ElemBackgroundCheck(HT_Elem_Ptr,HT_Node_Ptr,checkthiselement,stdout);
     ElemBackgroundCheck(HT_Elem_Ptr,HT_Node_Ptr,checkthisneighbor,stdout);
     */
-  //     if(myid==0) printf("initial_H_adapt %d & number of elements for refinement %d\n",55, debug_ref_flag); fflush(stdout);
-//printf("before loop adapted flag: %d, newson: %d, refinelelvel: %d, pile_boundary: %d, source_boundary:%d \n",
-//adapted_flag,newson,refinelevel,pile_boundary,source_boundary); fflush(stdout);
-//printf("number of elements   %d\n", num_nonzero_elem(HT_Elem_Ptr));fflush(stdout);
 
     for(i=0; i<hash_size; i++){//-- every process begin to scan their own hashtable
       entryp = *(HT_Elem_Ptr->getbucketptr() + i);
@@ -840,30 +839,25 @@ int adapted_flag =0 ,newson=0,refinelevel=0,pile_boundary=0,source_boundary=0;
 	EmTemp = (Element*)(entryp->value);
 	assert(EmTemp);
 	//-- this requirement is used to exclude the new elements
-//if(EmTemp->get_adapted_flag()>0) adapted_flag++;
-//if(EmTemp->get_adapted_flag()<NEWSON) newson++;
-//if(EmTemp->get_gen()<REFINE_LEVEL) refinelevel++;
-//if(EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0) pile_boundary++;
-//if(EmTemp->if_source_boundary(HT_Elem_Ptr)>0) source_boundary++;
- 
-if(((EmTemp->get_adapted_flag()>0)&&
-            (EmTemp->get_adapted_flag()<NEWSON))&&
-           (EmTemp->get_gen()<REFINE_LEVEL)
-          && ((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)||
-              (EmTemp->if_source_boundary(HT_Elem_Ptr)>0))
-             )	     
-{
+	if(((EmTemp->get_adapted_flag()>0)&&
+	    (EmTemp->get_adapted_flag()<NEWSON))&&
+	   (EmTemp->get_gen()<REFINE_LEVEL)){
+	  if(((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)|| 
+	    //(EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)|| 
+	    //(EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)|| 
+	      (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )>0)|| 
+	      (EmTemp->if_source_boundary(HT_Elem_Ptr)>0))
+	     ){
 	    refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);
 	    debug_ref_flag++;
 	  }
-	
+	}
 	entryp=entryp->next;
       }
     }
-//printf("After loop adapted flag: %d, newson: %d, refinelelvel: %d, pile_boundary: %d, source_boundary:%d \n",
-//adapted_flag,newson,refinelevel,pile_boundary,source_boundary); fflush(stdout);
+    //printf("myid=%d Initial_H_adapt() after first if_pile_boundary()\n",myid);
 
-    //if(myid==0) printf("initial_H_adapt %d & number of elements for refinement %d\n",5, debug_ref_flag); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",5); fflush(stdout)
 
     // -h_count for debugging
     //update_neighbor_info(HT_Elem_Ptr, &RefinedList, myid, numprocs, HT_Node_Ptr, h_count);
@@ -882,7 +876,7 @@ if(((EmTemp->get_adapted_flag()>0)&&
     */
 
 
-   // if(myid==0) printf("initial_H_adapt %d\n",6); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",6); fflush(stdout)
 
     if(timeprops_ptr->iter==0)
       //mark the piles so we can refine their boundaries
@@ -895,18 +889,19 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	  entryp=entryp->next;
 	}
       }
-//printf("after elliptical pile height \n");
-    //if(myid==0) printf("initial_H_adapt %d\n",7); fflush(stdout);
+
+    //if(myid==0) printf("initial_H_adapt %d\n",7); fflush(stdout)
 
     //mark the mass flux sources so we can refine their boundaries
     mark_flux_region(HT_Elem_Ptr, HT_Node_Ptr, matprops_ptr, fluxprops_ptr, 
 		     timeprops_ptr);
 
-//    if(myid==0) printf("initial_H_adapt %d\n",8); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",8); fflush(stdout)
 
     move_data(numprocs, myid, HT_Elem_Ptr, HT_Node_Ptr,timeprops_ptr);
 
     /*
+    printf("myid=%d Initial_H_adapt() before second if_pile_boundary()\n",myid);
     ElemBackgroundCheck(HT_Elem_Ptr,HT_Node_Ptr,checkthiselement,stdout);
     ElemBackgroundCheck(HT_Elem_Ptr,HT_Node_Ptr,checkthisneighbor,stdout);
     */
@@ -919,9 +914,13 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	assert(EmTemp);
 	//-- this requirement is used to exclude the new elements
 	if(EmTemp->get_adapted_flag()>0)
-	  if  ((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY)>0)|| 
+	  if(
+	     ((EmTemp->if_pile_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)|| 
+	      //(EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)|| 
+	      //(EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)|| \
+	      (EmTemp->if_pile_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )>0)|| 
 	      (EmTemp->if_source_boundary(HT_Elem_Ptr)>0))
-	     {
+	     ){
 	    EmTemp->put_adapted_flag(BUFFER);
 	    if(minboundarygen>EmTemp->get_gen()) minboundarygen=EmTemp->get_gen();
 	  }
@@ -929,17 +928,19 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	entryp=entryp->next;
       }
     }
+    //printf("myid=%d Initial_H_adapt() after second if_pile_boundary()\n",myid);
+
 
     intswap=minboundarygen;
     MPI_Allreduce(&minboundarygen,&intswap,1, MPI_INT,MPI_MIN,MPI_COMM_WORLD);
     minboundarygen=intswap;
 
- //   if(myid==0) printf("initial_H_adapt %d\n",9); fflush(stdout);
+    //if(myid==0) printf("initial_H_adapt %d\n",9); fflush(stdout)
 
     if(numprocs>1){
       move_data(numprocs, myid, HT_Elem_Ptr, HT_Node_Ptr,timeprops_ptr);
 
-//      if(myid==0) printf("initial_H_adapt %d\n",10); fflush(stdout);
+      //if(myid==0) printf("initial_H_adapt %d\n",10); fflush(stdout)
 
       //put in a small buffer layer to facilitate refinement across interprocessor boundaries
       for(int ibufferlayer=0;ibufferlayer<2;ibufferlayer++){    
@@ -971,7 +972,7 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	  }
 	}
 
-//	if(myid==0) printf("initial_H_adapt %d\n",11); fflush(stdout);
+	//if(myid==0) printf("initial_H_adapt %d\n",11); fflush(stdout)
 	
 	//update_neighbor_info(HT_Elem_Ptr, &RefinedList, myid, numprocs, HT_Node_Ptr, h_count);
 
@@ -980,7 +981,7 @@ if(((EmTemp->get_adapted_flag()>0)&&
         refine_neigh_update(HT_Elem_Ptr,HT_Node_Ptr,numprocs,myid,
 			    (void*) &RefinedList,timeprops_ptr);
 	
-//	if(myid==0) printf("initial_H_adapt %d\n",12); fflush(stdout);
+	//if(myid==0) printf("initial_H_adapt %d\n",12); fflush(stdout)
 
 	//mark the new buffer elements as BUFFER element 
 	for(i=0;i<TempList.get_num_elem();i++) {
@@ -988,11 +989,10 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	  assert(EmTemp);
 	  EmTemp->put_adapted_flag(BUFFER);
 	}
-
 	TempList.trashlist();
 	
 
-//	if(myid==0) printf("initial_H_adapt %d\n",13); fflush(stdout);
+	//if(myid==0) printf("initial_H_adapt %d\n",13); fflush(stdout)
 
 
 	move_data(numprocs, myid, HT_Elem_Ptr, HT_Node_Ptr,timeprops_ptr);
@@ -1004,14 +1004,12 @@ if(((EmTemp->get_adapted_flag()>0)&&
       NodeBackgroundCheck(HT_Elem_Ptr,HT_Node_Ptr,NodeDebugKey);
     }
 	*/
-//	if(myid==0) printf("initial_H_adapt %d\n",14); fflush(stdout);
+	//if(myid==0) printf("initial_H_adapt %d\n",14); fflush(stdout)
 
       }
     }
 
-  }while(
-//(++icounter<2)
-((++icounter)<(REFINE_LEVEL+3))&& //failsafe to prevent infinite loop 
+  }while(((++icounter)<(REFINE_LEVEL+3))&& //failsafe to prevent infinite loop 
 	 (minboundarygen<REFINE_LEVEL) //the usual criteria
 	 );
 
@@ -1056,10 +1054,10 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	EmTemp = (Element*)(entryp->value);
 	assert(EmTemp);
 	if((EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )==1)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)==1)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)==1)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )==1)
- ){
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)==1)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)==1)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )==1)
+	   ){
 	  refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);
 	  debug_ref_flag++;
 	}
@@ -1090,10 +1088,9 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	EmTemp = (Element*)(entryp->value);
 	assert(EmTemp);
 	if((EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,GEOFLOW_TINY     )>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)||
-           (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )>0)
-)
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD1)>0)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD2)>0)||
+	   (EmTemp->if_first_buffer_boundary(HT_Elem_Ptr,REFINE_THRESHOLD )>0)	   )
 	  EmTemp->put_adapted_flag(BUFFER);
 	entryp=entryp->next;
       }
@@ -1112,7 +1109,7 @@ if(((EmTemp->get_adapted_flag()>0)&&
 	  EmTemp = (Element*)(entryp->value);
 	  assert(EmTemp);
 	  if(EmTemp->if_next_buffer_boundary(HT_Elem_Ptr,HT_Node_Ptr,
-					    REFINE_THRESHOLD )==1){
+					     REFINE_THRESHOLD)==1){
 	    refinewrapper(HT_Elem_Ptr,HT_Node_Ptr,matprops_ptr,&RefinedList,EmTemp);
 	    debug_ref_flag++;
 	  }

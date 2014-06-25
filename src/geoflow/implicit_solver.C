@@ -47,7 +47,7 @@ int implicit_solver(LaplacianData *Laplacian)
   PetscErrorCode     ierr;
   PetscInt           xsize,*num_elem_proc,*to,*from,its;
   PetscMPIInt        rank,size;
-//  PetscScalar        *phin,*xx,sizo;
+  //  PetscScalar        *phin,*xx,sizo;
   KSPConvergedReason reason;
   VecScatter         vscat;
   IS                 globalis,tois;
@@ -62,8 +62,19 @@ int implicit_solver(LaplacianData *Laplacian)
 
   ierr = PetscMalloc(size*sizeof(PetscInt),&num_elem_proc); CHKERRQ(ierr);
   num_elem_proc[rank]=num_nonzero_elem(Laplacian->El_Table);
-  MPI_Bcast((num_elem_proc+rank), 1, MPI_INT, rank, PETSC_COMM_WORLD);
+
+  if (rank>0)
+    MPI_Send(&num_elem_proc[rank], 1, MPI_INT, 0, 22, PETSC_COMM_WORLD);
+  
+  if (rank==0)
+    for (int i=1;i<size;i++)
+      MPI_Recv(&num_elem_proc[i], 1, MPI_INT, i, 22, PETSC_COMM_WORLD, MPI_STATUS_IGNORE);
+  //MPI_Bcast(&num_elem_proc[rank], 1, MPI_INT, rank, PETSC_COMM_WORLD);
+  //MPI_Allgather(&num_elem_proc[rank], 1, MPI_INT, &num_elem_proc[rank], 1, MPI_Datatype recv_datatype, MPI_Comm communicator)
   MPI_Barrier(PETSC_COMM_WORLD);
+  MPI_Bcast(num_elem_proc, size, MPI_INT, 0, PETSC_COMM_WORLD);
+  MPI_Barrier(PETSC_COMM_WORLD);
+
 
   //printf("Number of elements are (hi i am second)...........%d\n", num_nonzero_elem(Laplacian->El_Table));
   int total_elem=0,start_elem=0;
@@ -230,9 +241,9 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y)
 
   ierr = MatShellGetContext(A,(void**) &myctx);CHKERRQ(ierr);
   ierr = VecGetSize(x,&xsize);
- // cout<<"size x is before "<<xsize<<endl;
+  // cout<<"size x is before "<<xsize<<endl;
   ierr = VecGetSize(y,&xsize);
- // cout<<"size y is  before"<<xsize<<endl;
+  // cout<<"size y is  before"<<xsize<<endl;
 
 
   num_elem_proc= myctx->Num_elem_proc;
@@ -365,7 +376,7 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
   rank         = ctx->rank;
 
   ierr = VecGetSize(b,&xsize);
-    //cout<<"size b in RHS 1:  "<<xsize<<endl;
+  //cout<<"size b in RHS 1:  "<<xsize<<endl;
 
 
 
@@ -389,7 +400,7 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
     }
   ierr = VecRestoreArray(b,&b_ptr);CHKERRQ(ierr);
   ierr = VecGetSize(b,&xsize);
-      //cout<<"size b in RHS 2:  "<<xsize<<endl;
+  //cout<<"size b in RHS 2:  "<<xsize<<endl;
 
   //ierr=VecScatterBegin(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);
   //ierr=VecScatterEnd(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);

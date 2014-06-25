@@ -120,6 +120,8 @@ void Pack_element(void *sendel_in, ElemPack* elem, HashTable* HT_Node_Ptr, int d
   elem->Swet       = sendel->Swet;
   elem->drypoint[0]= sendel->drypoint[0];
   elem->drypoint[1]= sendel->drypoint[1];
+  elem->lap_phi[0] = sendel->lap_phi[0];
+  elem->lap_phi[1] = sendel->lap_phi[1];
 }
 
 

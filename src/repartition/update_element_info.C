@@ -309,6 +309,8 @@ void construct_el(Element* newelement, ElemPack* elem2,
   newelement->Swet       = elem2->Swet;
   newelement->drypoint[0]= elem2->drypoint[0];
   newelement->drypoint[1]= elem2->drypoint[1];
+  newelement->lap_phi[0]= elem2->lap_phi[0];
+  newelement->lap_phi[1]= elem2->lap_phi[1];
 
   return;
 }

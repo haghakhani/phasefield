@@ -230,9 +230,9 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y)
 
   ierr = MatShellGetContext(A,(void**) &myctx);CHKERRQ(ierr);
   ierr = VecGetSize(x,&xsize);
-  cout<<"size x is before "<<xsize<<endl;
+ // cout<<"size x is before "<<xsize<<endl;
   ierr = VecGetSize(y,&xsize);
-  cout<<"size y is  before"<<xsize<<endl;
+ // cout<<"size y is  before"<<xsize<<endl;
 
 
   num_elem_proc= myctx->Num_elem_proc;
@@ -305,9 +305,9 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y)
     }
   ierr = VecRestoreArray(y,&y_ptr);CHKERRQ(ierr);
   ierr = VecGetSize(x,&xsize);
-  cout<<"size x is  after"<<xsize<<endl;
+  //cout<<"size x is  after"<<xsize<<endl;
   ierr = VecGetSize(y,&xsize);
-  cout<<"size y is after "<<xsize<<endl;
+  //cout<<"size y is after "<<xsize<<endl;
 
 
 
@@ -365,7 +365,7 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
   rank         = ctx->rank;
 
   ierr = VecGetSize(b,&xsize);
-    cout<<"size b in RHS 1:  "<<xsize<<endl;
+    //cout<<"size b in RHS 1:  "<<xsize<<endl;
 
 
 
@@ -389,7 +389,7 @@ PetscErrorCode MakeRHS(ContData *ctx,Vec b){
     }
   ierr = VecRestoreArray(b,&b_ptr);CHKERRQ(ierr);
   ierr = VecGetSize(b,&xsize);
-      cout<<"size b in RHS 2:  "<<xsize<<endl;
+      //cout<<"size b in RHS 2:  "<<xsize<<endl;
 
   //ierr=VecScatterBegin(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);
   //ierr=VecScatterEnd(vscat,blocal,b,INSERT_VALUES,SCATTER_FORWARD);CHKERRQ(ierr);

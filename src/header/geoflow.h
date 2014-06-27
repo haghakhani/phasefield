@@ -95,9 +95,6 @@ void calc_edge_states(HashTable* El_Table, HashTable* NodeTable,
 		      MatProps* matprops_ptr, TimeProps* timeprops_ptr,
 		      int myid, int* order_flag, double *outflow);
 
-//! This function updates phi variable
-PetscErrorCode update_phi(HashTable *El_Table, Vec update);
-
 //! This function counts the number of elements
 int num_nonzero_elem(HashTable *El_Table);
 

@@ -126,10 +126,10 @@ xdfm_write.o: xdfm_write.C \
  /usr/include/H5FDmpiposix.h /usr/include/H5FDmulti.h \
  /usr/include/H5FDsec2.h /usr/include/H5FDstdio.h \
  /usr/include/H5FDdirect.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpio.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpicxx.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpio.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpicxx.h \
  ../header/hashtab.h ../header/constant.h ../header/element2.h \
  /usr/include/math.h /usr/include/bits/huge_val.h \
  /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
@@ -138,23 +138,22 @@ xdfm_write.o: xdfm_write.C \
  ../header/boundary.h ../header/hashtab.h ../header/node.h \
  ../header/properties.h ../header/../useful/useful_lib.h \
  ../header/../gisapi/GisApi.h ../header/struct.h \
- /usr/local/petc/petsc-3.4.3/include/petscksp.h \
- /usr/local/petc/petsc-3.4.3/include/petscpc.h \
- /usr/local/petc/petsc-3.4.3/include/petscmat.h \
- /usr/local/petc/petsc-3.4.3/include/petscvec.h \
- /usr/local/petc/petsc-3.4.3/include/petscis.h \
- /usr/local/petc/petsc-3.4.3/include/petscsys.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/petscconf.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/petscfix.h \
- /usr/local/petc/petsc-3.4.3/include/petscversion.h \
- /usr/local/petc/petsc-3.4.3/include/petscmath.h \
- /usr/local/petc/petsc-3.4.3/include/petscerror.h \
- /usr/local/petc/petsc-3.4.3/include/petscviewertypes.h \
- /usr/local/petc/petsc-3.4.3/include/petscoptions.h \
- /usr/include/valgrind/valgrind.h \
- /usr/local/petc/petsc-3.4.3/include/petsclog.h \
- /usr/local/petc/petsc-3.4.3/include/petscsys.h \
- /usr/local/petc/petsc-3.4.3/include/petsclog.hh \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscksp.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscpc.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscmat.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscvec.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscis.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/petscconf.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/petscfix.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscversion.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscmath.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscerror.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscviewertypes.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscoptions.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petsclog.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petsclog.hh \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/map \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_tree.h \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_map.h \
@@ -166,14 +165,14 @@ xdfm_write.o: xdfm_write.C \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/emmintrin.h \
  /usr/include/sys/param.h /usr/include/linux/param.h \
  /usr/include/asm/param.h /usr/include/asm-generic/param.h \
- /usr/local/petc/petsc-3.4.3/include/petscsys.hh \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.hh \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/sstream \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/sstream.tcc \
- /usr/local/petc/petsc-3.4.3/include/petscsftypes.h \
- /usr/local/petc/petsc-3.4.3/include/petscviewer.h \
- /usr/local/petc/petsc-3.4.3/include/petscdmtypes.h \
- /usr/local/petc/petsc-3.4.3/include/petscdrawtypes.h ../header/node.h \
- ../header/GMFG_hdfapi.h ../../config.h
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsftypes.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscviewer.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscdmtypes.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscdrawtypes.h \
+ ../header/node.h ../header/GMFG_hdfapi.h ../../config.h
 
 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iostream:
 
@@ -511,13 +510,13 @@ xdfm_write.o: xdfm_write.C \
 
 /usr/include/H5FDdirect.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpio.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpio.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpicxx.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpicxx.h:
 
 ../header/hashtab.h:
 
@@ -555,39 +554,37 @@ xdfm_write.o: xdfm_write.C \
 
 ../header/struct.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscksp.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscksp.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscpc.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscpc.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscmat.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscmat.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscvec.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscvec.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscis.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscis.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscsys.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/petscconf.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/petscconf.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/petscfix.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/petscfix.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscversion.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscversion.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscmath.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscmath.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscerror.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscerror.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscviewertypes.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscviewertypes.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscoptions.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscoptions.h:
 
-/usr/include/valgrind/valgrind.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petsclog.h:
 
-/usr/local/petc/petsc-3.4.3/include/petsclog.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscsys.h:
-
-/usr/local/petc/petsc-3.4.3/include/petsclog.hh:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petsclog.hh:
 
 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/map:
 
@@ -617,19 +614,19 @@ xdfm_write.o: xdfm_write.C \
 
 /usr/include/asm-generic/param.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscsys.hh:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsys.hh:
 
 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/sstream:
 
 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/sstream.tcc:
 
-/usr/local/petc/petsc-3.4.3/include/petscsftypes.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscsftypes.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscviewer.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscviewer.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscdmtypes.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscdmtypes.h:
 
-/usr/local/petc/petsc-3.4.3/include/petscdrawtypes.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/include/petscdrawtypes.h:
 
 ../header/node.h:
 

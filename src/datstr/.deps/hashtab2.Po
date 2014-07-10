@@ -92,10 +92,10 @@ hashtab2.o: hashtab2.C ../../config.h /usr/include/stdio.h \
  /usr/include/sys/select.h /usr/include/bits/select.h \
  /usr/include/bits/sigset.h /usr/include/sys/sysmacros.h \
  /usr/include/alloca.h ../header/constant.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpio.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h \
- /usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpicxx.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpio.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h \
+ /dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpicxx.h \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/limits.h \
  /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/syslimits.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
@@ -336,13 +336,13 @@ hashtab2.o: hashtab2.C ../../config.h /usr/include/stdio.h \
 
 ../header/constant.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpio.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpio.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpi.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpi.h:
 
-/usr/local/petc/petsc-3.4.3/arch-linux2-c/include/mpicxx.h:
+/dinesh1/data/users/haghakha/slepc-3.4/petsc-3.4.4/regular/include/mpicxx.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/limits.h:
 

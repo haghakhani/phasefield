@@ -144,6 +144,9 @@ struct StatProps{
   //! the latin hypercube sampling specific stats
   LHS_Props lhs; 
 
+  //!Map area, I need it to calcualte eta and make allen_cahn mass conservative
+  double map_area;
+
   //! the constructor initializes a few statistics
   StatProps() {
     timereached=-1.0; 
@@ -153,6 +156,7 @@ struct StatProps{
     heightifreach=xyifreach[0]=xyifreach[1]=timereached=0.0;
     xyminmax[0]=xyminmax[1]=xyminmax[2]=xyminmax[3]=hxyminmax=0.0;
     lhs.refnum=lhs.runid=-1;
+    map_area=0.0;
   }
 
 

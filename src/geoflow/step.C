@@ -197,7 +197,7 @@ void step(HashTable* El_Table, HashTable* NodeTable, int myid, int nump,
   double deposited=0.0, elemdeposited;
   double realvolume=0.0;
 
-
+  double eta=compute_eta(El_Table,statprops_ptr );
 
   for(i=0; i<El_Table->get_no_of_buckets(); i++)
     if(*(buck+i))
@@ -222,7 +222,7 @@ void step(HashTable* El_Table, HashTable* NodeTable, int myid, int nump,
 		      fluxprops, timeprops_ptr,
 		      Curr_El_out,
 		      &elemforceint,&elemforcebed,
-		      &elemeroded,&elemdeposited);
+		      &elemeroded,&elemdeposited,&eta);
 
 	      for(int kk=0;kk<6;kk++) 
 		if (isnan(*(Curr_El->get_state_vars()+kk)))

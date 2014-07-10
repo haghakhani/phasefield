@@ -27,7 +27,7 @@ void correct(HashTable* NodeTable, HashTable* El_Table,
 	     double dt, MatProps* matprops_ptr, 
 	     FluxProps *fluxprops, TimeProps *timeprops,
 	     void *EmTemp_in,double *forceint, double *forcebed, 
-	     double *eroded, double *deposited)
+	     double *eroded, double *deposited,double *eta)
 {
   Element *EmTemp=(Element *) EmTemp_in;
   double *dx=EmTemp->get_dx();
@@ -163,7 +163,7 @@ void correct(HashTable* NodeTable, HashTable* El_Table,
 	   gravity, kactxy,d_gravity ,&(matprops_ptr->frict_tiny),
 	   forceint, forcebed, dragforce, &do_erosion, eroded, Vsolid, Vfluid,
 	   &solid_den, &fluid_den, &terminal_vel,
-	   &(matprops_ptr->epsilon), &IF_STOPPED, Influx, &navslip_coef);
+	   &(matprops_ptr->epsilon), &IF_STOPPED, Influx, &navslip_coef,eta);
 
   //if (state_vars[2]>100) {print_elem_data(EmTemp,matprops_ptr, fluxprops,timeprops); exit(1);}
   EmTemp->put_drag(dragforce);

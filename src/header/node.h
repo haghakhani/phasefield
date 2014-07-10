@@ -32,7 +32,7 @@ class Node {
 	     double dt, MatProps* matprops_ptr, 
 	     FluxProps *fluxprops, TimeProps *timeprops, void *EmTemp,
 	     double *forceint, double *forcebed,
-	     double *eroded, double *deposited);
+	     double *eroded, double *deposited,double *eta);
 
   friend void AssertMeshErrorFree(HashTable *El_Table, HashTable* NodeTable,
 				  int numprocs, int myid, double loc);

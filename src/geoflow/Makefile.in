@@ -60,7 +60,7 @@ am_libgeoflow_a_OBJECTS = correct.$(OBJEXT) drag_model.$(OBJEXT) \
 	move_data.$(OBJEXT) setup_geoflow.$(OBJEXT) step.$(OBJEXT) \
 	stats.$(OBJEXT) flux_srcs.$(OBJEXT) corrector.$(OBJEXT) \
 	printdata.$(OBJEXT) print_elem_data.$(OBJEXT) \
-	implicit_solver.$(OBJEXT)
+	implicit_solver.$(OBJEXT) compute_eta.$(OBJEXT)
 libgeoflow_a_OBJECTS = $(am_libgeoflow_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -184,7 +184,7 @@ noinst_LIBRARIES = libgeoflow.a
 libgeoflow_a_SOURCES = correct.f drag_model.f element_weight.C predict.f sgn.f \
    edge_states.C get_coef_and_eigen.C rnr.h slopes.C eigen.f getcoef.f \
    move_data.C setup_geoflow.C step.C stats.C flux_srcs.C corrector.C \
-   printdata.C print_elem_data.C implicit_solver.C
+   printdata.C print_elem_data.C implicit_solver.C compute_eta.C
 
 all: all-am
 
@@ -234,6 +234,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/compute_eta.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/corrector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/edge_states.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/element_weight.Po@am__quote@

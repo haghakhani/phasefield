@@ -44,7 +44,7 @@ void correct(HashTable* NodeTable, HashTable* El_Table,
 	     double dt, MatProps* matprops_ptr, 
 	     FluxProps *fluxprops, TimeProps *timeprops,
 	     void *EmTemp, double *forceint, double *forcebed, 
-	     double *eroded, double *deposited);
+	     double *eroded, double *deposited,double *eta);
 
 //! this function is legacy, the prototype exists but the function is not defined
 void checknodesol(HashTable*);
@@ -107,6 +107,8 @@ PetscErrorCode MatLaplacian2D_Mult(Mat A,Vec x,Vec y);
 //
 ////! This function is the implicit solver
 int implicit_solver(LaplacianData* Laplacian);
+
+double compute_eta(HashTable* El_Table,StatProps* statprops);
 //
 ////! This function is used in in implicit solver 
 PetscScalar *phase(HashTable *El_Table, int num_elem);
@@ -213,7 +215,7 @@ extern "C" void correct_(double *Uvec, double *Uprev, double *fluxxp,
 			 double *dragf, int *do_erosion, double *eroded, 
 			 double *Vsolid, double *Vfluid, double *den_solid, 
                          double *den_fluid, double *terminal_vel, double *eps, 
-                         int *if_stopped, double *fluxcoef, double *navslip);
+                         int *if_stopped, double *fluxcoef, double *navslip,double *eta);
 #endif
 #ifdef IBMSP
 extern "C" void gmfggetcoef(double*, double*, double*, double*, double*, 

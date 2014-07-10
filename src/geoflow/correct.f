@@ -21,7 +21,7 @@ C***********************************************************************
      2     curv,intfrictang, bedfrictang, g, kactxy,  dgdx, 
      3     frict_tiny, forceint,forcebed, dragfoce ,DO_EROSION,
      4     eroded, v_solid, v_fluid,den_solid, den_fluid, terminal_vel,
-     5     eps, IF_STOPPED, fluxsrc, navslip)
+     5     eps, IF_STOPPED, fluxsrc, navslip,eta)
 C***********************************************************************
 
       implicit none
@@ -44,7 +44,7 @@ C***********************************************************************
       double precision xslope,yslope,slope
       double precision t1, t2, t3, t4,aaa
       double precision erosion_rate,threshold,es,totalShear
-      double precision eps, drag(4),tempo
+      double precision eps, drag(4),tempo,eta
 
 !     function calls
       double precision sgn
@@ -54,13 +54,13 @@ C***********************************************************************
       parameter(threshold=1.0D-02,erosion_rate=0.1)
 
 c     initialize to zero
-      forceintx=0.0
-      forcebedx=0.0
-      forceinty=0.0
-      forcebedy=0.0
-      unitvx=0.0
-      unitvy=0.0
-      eroded=0.0
+      forceintx=0.d0
+      forcebedx=0.d0
+      forceinty=0.d0
+      forcebedy=0.d0
+      unitvx=0.d0
+      unitvy=0.d0
+      eroded=0.d0
 
       slope=dsqrt(xslope*xslope+yslope*yslope)
 c     -------------------------------Hossein-------------------------------------
@@ -77,7 +77,7 @@ c     -------------------------------Hossein------------------------------------
 
       t3=4*uvec(1)*(uvec(1)**2-1)
 c      t3=2*uvec(1)*(2*uvec(1)**2-3*uvec(1)+1)
-      ustore(1)=ustore(1)+dt*(-t3)
+      ustore(1)=ustore(1)+dt*(-t3+eta)
 
       
       ustore(2) = max(ustore(2),0.)

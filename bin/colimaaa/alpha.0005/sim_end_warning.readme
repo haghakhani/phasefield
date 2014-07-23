@@ -1,0 +1,5 @@
+Titan2D performed 2380 time steps before the calculation ended.
+0:01:15 (hrs:min:sec) of time was simulated.
+the final v* = v/v_slump = 33.8842
+The maximum final velocity of 63.1067 [m/s] 
+occured at the UTM coordinates (642061,2.15468e+06)

@@ -1,0 +1,600 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd"[]> 
+<Xdmf Version="2.0">
+<Domain>
+<Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
+<Grid Name="colima">
+<Time Value="0" />
+<Topology Type="QUADRILATERAL" Dimensions="2726" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="2726 4" Format="HDF">
+		xdmf0300000000.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="10904 3" Format="HDF">
+		xdmf0300000000.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="2726 1" Format="HDF">
+		xdmf0300000000.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="2726 1" Format="HDF">
+		xdmf0300000000.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="2726 1" Format="HDF">
+		xdmf0300000000.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="2726 1" Format="HDF">
+		xdmf0300000000.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="10" />
+<Topology Type="QUADRILATERAL" Dimensions="3073" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="3073 4" Format="HDF">
+		xdmf0300000269.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="12292 3" Format="HDF">
+		xdmf0300000269.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="3073 1" Format="HDF">
+		xdmf0300000269.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="3073 1" Format="HDF">
+		xdmf0300000269.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="3073 1" Format="HDF">
+		xdmf0300000269.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="3073 1" Format="HDF">
+		xdmf0300000269.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="20" />
+<Topology Type="QUADRILATERAL" Dimensions="9140" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="9140 4" Format="HDF">
+		xdmf0300000641.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="36560 3" Format="HDF">
+		xdmf0300000641.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="9140 1" Format="HDF">
+		xdmf0300000641.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="9140 1" Format="HDF">
+		xdmf0300000641.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="9140 1" Format="HDF">
+		xdmf0300000641.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="9140 1" Format="HDF">
+		xdmf0300000641.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="30" />
+<Topology Type="QUADRILATERAL" Dimensions="17091" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="17091 4" Format="HDF">
+		xdmf0300001151.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="68364 3" Format="HDF">
+		xdmf0300001151.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="17091 1" Format="HDF">
+		xdmf0300001151.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="17091 1" Format="HDF">
+		xdmf0300001151.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="17091 1" Format="HDF">
+		xdmf0300001151.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="17091 1" Format="HDF">
+		xdmf0300001151.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="40" />
+<Topology Type="QUADRILATERAL" Dimensions="26879" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="26879 4" Format="HDF">
+		xdmf0300001791.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="107516 3" Format="HDF">
+		xdmf0300001791.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="26879 1" Format="HDF">
+		xdmf0300001791.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="26879 1" Format="HDF">
+		xdmf0300001791.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="26879 1" Format="HDF">
+		xdmf0300001791.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="26879 1" Format="HDF">
+		xdmf0300001791.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="50" />
+<Topology Type="QUADRILATERAL" Dimensions="39847" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="39847 4" Format="HDF">
+		xdmf0300002697.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="159388 3" Format="HDF">
+		xdmf0300002697.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="39847 1" Format="HDF">
+		xdmf0300002697.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="39847 1" Format="HDF">
+		xdmf0300002697.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="39847 1" Format="HDF">
+		xdmf0300002697.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="39847 1" Format="HDF">
+		xdmf0300002697.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="60" />
+<Topology Type="QUADRILATERAL" Dimensions="55651" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="55651 4" Format="HDF">
+		xdmf0300003685.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="222604 3" Format="HDF">
+		xdmf0300003685.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="55651 1" Format="HDF">
+		xdmf0300003685.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="55651 1" Format="HDF">
+		xdmf0300003685.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="55651 1" Format="HDF">
+		xdmf0300003685.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="55651 1" Format="HDF">
+		xdmf0300003685.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="70" />
+<Topology Type="QUADRILATERAL" Dimensions="72758" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="72758 4" Format="HDF">
+		xdmf0300004865.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="291032 3" Format="HDF">
+		xdmf0300004865.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="72758 1" Format="HDF">
+		xdmf0300004865.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="72758 1" Format="HDF">
+		xdmf0300004865.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="72758 1" Format="HDF">
+		xdmf0300004865.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="72758 1" Format="HDF">
+		xdmf0300004865.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="80" />
+<Topology Type="QUADRILATERAL" Dimensions="85122" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="85122 4" Format="HDF">
+		xdmf0300006310.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="340488 3" Format="HDF">
+		xdmf0300006310.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="85122 1" Format="HDF">
+		xdmf0300006310.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="85122 1" Format="HDF">
+		xdmf0300006310.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="85122 1" Format="HDF">
+		xdmf0300006310.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="85122 1" Format="HDF">
+		xdmf0300006310.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="90" />
+<Topology Type="QUADRILATERAL" Dimensions="99506" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="99506 4" Format="HDF">
+		xdmf0300007861.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="398024 3" Format="HDF">
+		xdmf0300007861.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="99506 1" Format="HDF">
+		xdmf0300007861.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="99506 1" Format="HDF">
+		xdmf0300007861.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="99506 1" Format="HDF">
+		xdmf0300007861.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="99506 1" Format="HDF">
+		xdmf0300007861.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="100" />
+<Topology Type="QUADRILATERAL" Dimensions="115844" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="115844 4" Format="HDF">
+		xdmf0300009441.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="463376 3" Format="HDF">
+		xdmf0300009441.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="115844 1" Format="HDF">
+		xdmf0300009441.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="115844 1" Format="HDF">
+		xdmf0300009441.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="115844 1" Format="HDF">
+		xdmf0300009441.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="115844 1" Format="HDF">
+		xdmf0300009441.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="110" />
+<Topology Type="QUADRILATERAL" Dimensions="92229" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="92229 4" Format="HDF">
+		xdmf0300011146.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="368916 3" Format="HDF">
+		xdmf0300011146.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="92229 1" Format="HDF">
+		xdmf0300011146.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="92229 1" Format="HDF">
+		xdmf0300011146.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="92229 1" Format="HDF">
+		xdmf0300011146.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="92229 1" Format="HDF">
+		xdmf0300011146.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="120" />
+<Topology Type="QUADRILATERAL" Dimensions="77882" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="77882 4" Format="HDF">
+		xdmf0300013054.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="311528 3" Format="HDF">
+		xdmf0300013054.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="77882 1" Format="HDF">
+		xdmf0300013054.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="77882 1" Format="HDF">
+		xdmf0300013054.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="77882 1" Format="HDF">
+		xdmf0300013054.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="77882 1" Format="HDF">
+		xdmf0300013054.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="130" />
+<Topology Type="QUADRILATERAL" Dimensions="72712" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="72712 4" Format="HDF">
+		xdmf0300015057.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="290848 3" Format="HDF">
+		xdmf0300015057.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="72712 1" Format="HDF">
+		xdmf0300015057.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="72712 1" Format="HDF">
+		xdmf0300015057.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="72712 1" Format="HDF">
+		xdmf0300015057.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="72712 1" Format="HDF">
+		xdmf0300015057.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="140" />
+<Topology Type="QUADRILATERAL" Dimensions="90763" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="90763 4" Format="HDF">
+		xdmf0300016956.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="363052 3" Format="HDF">
+		xdmf0300016956.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="90763 1" Format="HDF">
+		xdmf0300016956.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="90763 1" Format="HDF">
+		xdmf0300016956.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="90763 1" Format="HDF">
+		xdmf0300016956.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="90763 1" Format="HDF">
+		xdmf0300016956.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="150" />
+<Topology Type="QUADRILATERAL" Dimensions="88199" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="88199 4" Format="HDF">
+		xdmf0300018653.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="352796 3" Format="HDF">
+		xdmf0300018653.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="88199 1" Format="HDF">
+		xdmf0300018653.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="88199 1" Format="HDF">
+		xdmf0300018653.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="88199 1" Format="HDF">
+		xdmf0300018653.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="88199 1" Format="HDF">
+		xdmf0300018653.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
+<Grid Name="colima">
+<Time Value="160" />
+<Topology Type="QUADRILATERAL" Dimensions="63826" Order="0 3 2 1">
+<DataItem Name="Connections" DataType="Int" Precision="4"
+Dimensions="63826 4" Format="HDF">
+		xdmf0300020199.h5:/Mesh/Connections
+</DataItem>
+</Topology>
+<Geometry Type="XYZ">
+<DataItem Name="Coordinates" DataType="Float" Precision="8"
+Dimensions="255304 3" Format="HDF">
+		xdmf0300020199.h5:/Mesh/Points
+</DataItem>
+</Geometry>
+<Attribute Type="Scalar" Center="Cell" Name="Phi">
+<DataItem DataType="Float" Precision="8" Dimensions="63826 1" Format="HDF">
+		xdmf0300020199.h5:/Properties/PHI
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Pile Height">
+<DataItem DataType="Float" Precision="8" Dimensions="63826 1" Format="HDF">
+		xdmf0300020199.h5:/Properties/PILE_HEIGHT
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="X_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="63826 1" Format="HDF">
+		xdmf0300020199.h5:/Properties/XMOMENTUM
+</DataItem>
+</Attribute>
+<Attribute Type="Scalar" Center="Cell" Name="Y_Momentum">
+<DataItem DataType="Float" Precision="8" Dimensions="63826 1" Format="HDF">
+		xdmf0300020199.h5:/Properties/YMOMENTUM
+</DataItem>
+</Attribute>
+</Grid>
